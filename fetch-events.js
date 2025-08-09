@@ -2,7 +2,8 @@ import fs from 'fs';
 import fetch from 'node-fetch';
 
 const token = process.env.BOOKWHEN_TOKEN;
-const url = 'https://api.bookwhen.com/v2/events';
+const today = new Date().toISOString();
+const url = `https://api.bookwhen.com/v2/events?after=${today}`;
 
 const res = await fetch(url, {
   headers: {
@@ -20,4 +21,4 @@ if (!res.ok) {
 
 const data = await res.json();
 fs.writeFileSync('events.json', JSON.stringify(data, null, 2));
-console.log('events.json updated successfully.');
+console.log(`events.json updated successfully. Found ${data.data.length} events.`);
