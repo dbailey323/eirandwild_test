@@ -5,7 +5,10 @@ const token = process.env.BOOKWHEN_TOKEN;
 const url = 'https://api.bookwhen.com/v2/events';
 
 const res = await fetch(url, {
-  headers: { Authorization: `Bearer ${token}` }
+  headers: {
+    "Authorization": `Bearer ${token}`,
+    "Accept": "application/json"
+  }
 });
 
 if (!res.ok) {
