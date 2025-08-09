@@ -12,7 +12,9 @@ const res = await fetch(url, {
 });
 
 if (!res.ok) {
+  const errorText = await res.text();
   console.error(`Error fetching events: ${res.status} ${res.statusText}`);
+  console.error(`Response: ${errorText}`);
   process.exit(1);
 }
 
